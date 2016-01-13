@@ -1,0 +1,43 @@
+﻿<Page
+    x:Class="ZhihuDaily.ContentPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ZhihuDaily"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <!--划分区域-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0">
+            <!--此部分滚动呈现题图与标题-->
+        <Image Margin="0,0,0,0" Name="Pic"/>
+        <TextBlock Name="Title" FontSize="21" VerticalAlignment="Bottom" HorizontalAlignment="Left" TextWrapping="Wrap" FontWeight="Bold">
+            极简版的粉蒸肉，在自家尝一点成都味道
+        </TextBlock>
+            <TextBlock Name="PicInfo" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+            图片：zhuyi / 知乎
+        </TextBlock>
+        </Grid>
+        <Grid Grid.Row="1">
+        <ScrollViewer>
+            <!--此部分滚动呈现内容-->
+        </ScrollViewer>
+        </Grid>
+    </Grid>
+    <Page.BottomAppBar>
+        <CommandBar ClosedDisplayMode="Minimal" Background="#33000000" BorderBrush="{x:Null}">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Icon="SaveLocal" Label="收藏" Click="FavoriteClick"/>
+                <AppBarButton Icon="ReShare" Label="分享" Click="ShareClick"/>
+                <AppBarButton Icon="Setting" Label="设置" Click="Setting"/>
+                <AppBarButton Icon="Favorite" Label="收藏夹" Click="Collection"/>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>

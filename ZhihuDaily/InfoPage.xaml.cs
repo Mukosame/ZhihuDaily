@@ -13,30 +13,19 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
+// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace ZhihuDaily
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class InfoPage : Page
     {
-        public MainPage()
+        public InfoPage()
         {
             this.InitializeComponent();
         }
-
-        public void OnCreate()
-        {
-            
-        }
-
-        public void initImageLoader ()
-        {
-            //File cachedir = 
-        }
-
 
         #region APPBARBUTTON
         private async void bclick(object sender, RoutedEventArgs e)
@@ -45,9 +34,9 @@ namespace ZhihuDaily
     new Uri(string.Format("ms-windows-store:reviewapp?appid=" + "f840285e-0a27-49a5-81d6-78edf83e82b9")));
         }
 
-        private void cclick(object sender, RoutedEventArgs e)
+        private void homeclick(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(InfoPage));
+            Frame.Navigate(typeof(MainPage));
         }
 
         private void Setting(object sender, RoutedEventArgs e)
@@ -60,6 +49,7 @@ namespace ZhihuDaily
             Frame.Navigate(typeof(CollectionPage));
         }
         #endregion
-
     }
+
+
 }

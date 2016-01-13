@@ -1,0 +1,28 @@
+﻿<Page
+    x:Class="ZhihuDaily.CollectionPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ZhihuDaily"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- BackGround and Title -->
+
+        <Grid Background="#009dd7">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="收藏夹" FontSize="21" VerticalAlignment="Center" Foreground="White" Margin="20, 0, 0, 0"/>
+        </Grid>
+
+        <!-- TODO: CONTENT -->
+        
+    </Grid>
+</Page>

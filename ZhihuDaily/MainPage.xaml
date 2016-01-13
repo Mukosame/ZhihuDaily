@@ -5,10 +5,48 @@
     xmlns:local="using:ZhihuDaily"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    xmlns:data ="using:ZhihuDaily.Data"
+    
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    d:DataContext="{Binding Source={d:DesignData Source=/Data/ContentData.json, Type=data:SampleDataSource}}">
+    
+    <!--底部APP Bar-->
+    <Page.BottomAppBar>
+        <CommandBar ClosedDisplayMode="Minimal" Background="#33000000" BorderBrush="{x:Null}">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Icon="Like" Label="点评" Click="bclick"/>
+                <AppBarButton Icon="Help" Label="关于" Click="cclick"/>
+                <AppBarButton Icon="Setting" Label="设置" Click="Setting"/>
+                <AppBarButton Icon="Favorite" Label="收藏夹" Click="Collection"/>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
+        <!-- BackGround and Title -->
+
+        <Grid Background="#009dd7">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="Assets/Web_Logo.png" Height="40" Margin="20, 0, 0, 0"/>
+        </Grid>
+        <ProgressBar IsIndeterminate="True" Height="10" Width="300" Grid.Row="0" VerticalAlignment="Top" x:Name="loadingProgress" Visibility="Collapsed"/>
+        <StackPanel Orientation="Vertical" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20, 0, 0, 5" Visibility="Collapsed" x:Name="sp_refresh">
+            <ProgressRing x:Name="pr" IsActive="True" Foreground="Blue" Margin="0, 0, 0, 20"/>
+            <TextBlock Text="更新中..."/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0, 0, 20, 5" Visibility="Collapsed" x:Name="sp_loadmore">
+            <ProgressRing x:Name="pr_refresh" IsActive="True" Foreground="Blue"  Margin="0, 0, 0, 20"/>
+            <TextBlock Text="加载中..."/>
+        </StackPanel>
+        
+        <!-- TODO: CONTENT -->
     </Grid>
-
 </Page>

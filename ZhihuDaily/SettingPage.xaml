@@ -26,17 +26,17 @@
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <TextBlock Name ="tb_storage" TextWrapping="Wrap"  Foreground="Gray" VerticalAlignment="Center">
-                    本地可用存储空间：
+                    本地可用存储空间：待计算
                     </TextBlock>
                     </Grid>
                     <Grid Grid.Row="1">
                         <TextBlock Name ="tb_localdata" TextWrapping="Wrap"  Foreground="Gray" VerticalAlignment="Center">
-                    本地保存数据：
+                    本地保存数据：待计算
                     </TextBlock>
                     </Grid>
                     <Grid Grid.Row="2">
                         <TextBlock Name ="tb_temp" TextWrapping="Wrap" Foreground="Gray" VerticalAlignment="Center">
-                    临时缓存文件：
+                    临时缓存文件：待计算
                     </TextBlock>
                     </Grid>
                     
@@ -64,11 +64,14 @@
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
                             <TextBlock VerticalAlignment="Center">
-                                仅在连接到Wi-Fi时下载
+                                仅在开启Wi-Fi时下载图片
                             </TextBlock>
                         </Grid>
                         <Grid Grid.Column="1">
-                            <ToggleSwitch Name="wifi_only" HorizontalAlignment="Right"/>
+                            <ToggleSwitch Name="tsNoImageMode" 
+                                          HorizontalAlignment="Right" 
+                                          IsOn="{Binding NoImagesMode}"
+                                          Toggled="tsNoImagesMode_Toggled"/>
                         </Grid>
                     </Grid>
                     <Grid Grid.Row="5">
@@ -82,7 +85,11 @@
                             </TextBlock>
                         </Grid>
                         <Grid Grid.Column="1">
-                            <ToggleSwitch Name="sd" HorizontalAlignment="Right" IsOn="True"/>
+                            <ToggleSwitch Name="tssSD" 
+                                          HorizontalAlignment="Right" 
+                                          IsOn="{Binding SD}"
+                                          Toggled="tsSD_Toggled"
+                                          IsEnabled="False"/>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -95,37 +102,63 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0">
-                        <TextBlock VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <TextBlock VerticalAlignment="Center">
                                 主页磁贴透明化
-                        </TextBlock>
+                            </TextBlock>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <ToggleSwitch Name="tsStick" 
+                                          HorizontalAlignment="Right" 
+                                          IsOn="{Binding Stick}" 
+                                          Toggled="tsStick_Toggled"
+                                          IsEnabled="False"/>
+                        </Grid>
                     </Grid>
-                    <Grid Grid.Column="1">
-                        <ToggleSwitch Name="stick" HorizontalAlignment="Right" IsOn="True" IsEnabled="False"/>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <TextBlock VerticalAlignment="Center">
+                                夜间模式
+                            </TextBlock>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <ToggleSwitch Name="tsNightMode" 
+                                          HorizontalAlignment="Right" 
+                                          IsOn="{Binding NightMode}" 
+                                          Toggled="tsNightMode_Toggled"
+                                          IsEnabled="False"/>
+                        </Grid>
                     </Grid>
-                </Grid>
-                <Grid Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0">
-                        <TextBlock VerticalAlignment="Center">
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <TextBlock VerticalAlignment="Center">
                                 自动推送更新
-                        </TextBlock>
+                            </TextBlock>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <ToggleSwitch Name="tsAutoNoti" 
+                                          HorizontalAlignment="Right" 
+                                          IsOn="{Binding AutoNoti}"
+                                          Toggled="tsAutoNoti_Toggled"
+                                          IsEnabled="False"/>
+                        </Grid>
                     </Grid>
-                    <Grid Grid.Column="1">
-                        <ToggleSwitch Name="notification" HorizontalAlignment="Right" IsOn="False" IsEnabled="False"/>
-                    </Grid>
-                </Grid>
                 </Grid>
             </PivotItem>
         </Pivot>

@@ -8,28 +8,68 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <!--划分区域-->
-        <Grid.RowDefinitions>
-            <RowDefinition Height="200"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        
-        <Grid Grid.Row="0">
-            <!--此部分滚动呈现题图与标题-->
-        <Image Margin="0,0,0,0" Name="Pic"/>
-        <TextBlock Name="Title" FontSize="21" VerticalAlignment="Bottom" HorizontalAlignment="Left" TextWrapping="Wrap" FontWeight="Bold">
-            极简版的粉蒸肉，在自家尝一点成都味道
-        </TextBlock>
-            <TextBlock Name="PicInfo" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-            图片：zhuyi / 知乎
-        </TextBlock>
-        </Grid>
-        <Grid Grid.Row="1">
-        <ScrollViewer>
+        <!--此部分滚动呈现题图与标题-->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <RelativePanel Grid.Row="0" Visibility="{Binding Path=Image,Converter={StaticResource childVisibilityByString}}">
+                <Image RelativePanel.AlignBottomWithPanel="True"
+                            RelativePanel.AlignTopWithPanel="True"
+                            RelativePanel.AlignLeftWithPanel="True"
+                            RelativePanel.AlignRightWithPanel="True"
+                            Name="imgStoryPic"
+                            Height="200"
+                            Stretch="UniformToFill"
+                            Source="{Binding Image}">
+                </Image>
+                <Border RelativePanel.AlignBottomWithPanel="True"
+                                    RelativePanel.AlignTopWithPanel="True"
+                                    RelativePanel.AlignLeftWithPanel="True"
+                                    RelativePanel.AlignRightWithPanel="True"
+                                    >
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0.2">
+                            <GradientStop Color="Transparent"/>
+                            <GradientStop Offset="1" Color="#4C000000"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+
+                </Border>
+                <TextBlock Text="{Binding Title}"
+                                FontSize="21"
+                                FontWeight="Bold"
+                                TextWrapping="Wrap"
+                                Foreground="White"
+                                RelativePanel.AlignBottomWithPanel="True"
+                                Name="txtbStoryTitle"
+                                Margin="25">
+                </TextBlock>
+                <TextBlock RelativePanel.AlignRightWithPanel="True"
+                               RelativePanel.AlignBottomWithPanel="True"
+                               Margin="0,0,15,10"
+                               FontSize="13"
+                               Foreground="White"
+                               Name="txtbStoryImageSource"
+                               Text="{Binding ImageSource}">
+                </TextBlock>
+            </RelativePanel>
+
             <!--此部分滚动呈现内容-->
-        </ScrollViewer>
+            <WebView Name="webStoryContent"
+                         Grid.Row="1"
+                         local:ExtensionHTMLStringProperties.HtmlString="{Binding BodyHtml}" >
+            </WebView>
         </Grid>
+
+        <ProgressRing Grid.Row="1"
+                      Width="60"
+                      Height="60"
+                      IsActive="{Binding IsLoading}">
+        </ProgressRing>
     </Grid>
+
     <Page.BottomAppBar>
         <CommandBar ClosedDisplayMode="Minimal" Background="#33000000" BorderBrush="{x:Null}">
             <CommandBar.PrimaryCommands>

@@ -47,11 +47,25 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
-
+                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap">
+                            “知乎日报”的使用方法：待补充
+                            <LineBreak/>
+                        </TextBlock>
                     </Grid>
-                    <Grid Grid.Row="1">
-                       
-                    </Grid>
+                    <RelativePanel Grid.Row="1">
+                        <TextBlock VerticalAlignment="Center" 
+                                   TextWrapping="Wrap"
+                                   Foreground="Gray">
+                            此项目完全开源，遵守MIT协议
+                            <LineBreak/>可在github上查看此项目的源代码。
+                        </TextBlock>
+                        <HyperlinkButton Content="GitHub"
+                                         Background="Transparent"
+                                         NavigateUri="https://www.github.com/Mukosame/ZhihuDaily"
+                                         RelativePanel.AlignRightWithPanel="True"
+                                         RelativePanel.AlignBottomWithPanel="True" Margin="-54,0,0,-7">
+                        </HyperlinkButton>
+                    </RelativePanel>
                 </Grid>
             </PivotItem>
         </Pivot>

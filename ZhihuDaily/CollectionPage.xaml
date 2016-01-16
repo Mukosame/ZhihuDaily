@@ -6,7 +6,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
+    <Page.Resources>
+        <!--local:ItemBackgroundFormat x:Key="itemBackgroundFormat"></-->
+        <MenuFlyout x:Key="contextMenu">
+            <MenuFlyoutItem Text="查看文章" Name="menuScan" Click="menuScan_Click"/>
+            <MenuFlyoutItem Text="取消收藏" Name="menuRemove" Click="menuRemove_Click"/>
+        </MenuFlyout>
+    </Page.Resources>
+    
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
@@ -14,7 +21,6 @@
         </Grid.RowDefinitions>
 
         <!-- BackGround and Title -->
-
         <Grid Background="#009dd7">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -23,6 +29,51 @@
         </Grid>
 
         <!-- TODO: CONTENT -->
-        
+        <ListView Name="listCollections"
+                  Grid.Row="1"
+                  Padding="0,5,0,0"
+                  ItemsSource="{Binding CollectionStories}"
+                  SelectionMode="None"
+                  IsItemClickEnabled="True"                
+                  ItemClick="listCollections_ItemClick">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Margin" Value="8,4,8,4"></Setter>
+                    <Setter Property="Padding" Value="0"></Setter>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid RightTapped="Border_RightTapped">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <RelativePanel Grid.Column="1">
+                            <TextBlock 
+                                       FontSize="16"
+                                       TextWrapping="Wrap"
+                                       Text="{Binding Title}"
+                                       Foreground="{Binding Path=Readed,Converter={StaticResource itemBackgroundFormat}}"
+                                       Margin="15,8,5,8">
+                            </TextBlock>
+                        </RelativePanel>
+
+                        <RelativePanel Grid.Column="0" Padding="0,8,8,8">
+                            <Image Width="60"
+                                    Source="{Binding Image}">
+                            </Image>
+                        </RelativePanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ProgressRing Grid.Row="1"
+                      Height="60"
+                      Width="60"
+                      IsActive="{Binding IsLoading}">
+
+        </ProgressRing>
     </Grid>
 </Page>

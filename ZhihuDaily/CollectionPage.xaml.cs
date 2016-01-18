@@ -75,5 +75,25 @@ namespace ZhihuDaily
             }
         }
 
+        #region APPBARBUTTON
+        private async void bclick(object sender, RoutedEventArgs e)
+        {
+            await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store://review/?ProductId=9NBLGGH5G38S"));
+        }
+        private void cclick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(InfoPage));
+        }
+
+        private void homeclick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MainPage));
+        }
+
+        private void Setting(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(SettingPage));
+        }
+        #endregion
     }
 }

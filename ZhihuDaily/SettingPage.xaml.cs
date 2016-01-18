@@ -108,18 +108,49 @@ namespace ZhihuDaily
             String storage = "";
             String localdata = "";
             String temp = "";
-            //
-            //TODO
-            //
+
+            UInt64 freespace = GetFreeSpace();
+            storage = SizeConvertor(freespace).ToString() + " mb";
+            localdata = GetLocalDataSize("dir/").ToString() + " mb";//TODO
+            temp = GetLocalDataSize("dir/").ToString() + " mb";//TODO
+            
             tb_storage.Text = "本地可用存储空间：" + storage;
             tb_localdata.Text = "本地保存数据：" + localdata;
             tb_temp.Text = "临时缓存文件：" + temp;
         }
+        
+        public async Task<UInt64> GetFreeSpace()
+{//获取本地可用存储空间
+    StorageFolder local = ApplicationData.Current.LocalFolder;
+    var retrivedProperties = await local.Properties.RetrievePropertiesAsync(new string[] { "System.FreeSpace" });
+    return (UInt64)retrivedProperties["System.FreeSpace"];
+}
+// usage:
+UInt64 myFreeSpace = await GetFreeSpace();
+        
+        public float GetLocalDataSize(String folder)
+        {
+            long total = 0;
+            using (var isolatedStorage = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                foreach (var fileName in isolatedStorage.GetFileNames(folder))
+                {
+                    using (var file = isolatedStorage.OpenFile(folder + fileName, FileMode.Open))
+                    { total += file.Length;}//total in bytes
+                }
+            }
+            return SizeConvertor(total);
+        }
+        
+        public float SizeConvertor(int DataSize)
+        {
+            return Math.Round(DataSize/1048576, 3);
+        }
+        
         #region APPBARBUTTON
         private async void bclick(object sender, RoutedEventArgs e)
         {
-            await Windows.System.Launcher.LaunchUriAsync(
-    new Uri(string.Format("ms-windows-store:reviewapp?appid=" + "f840285e-0a27-49a5-81d6-78edf83e82b9")));
+            await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store://review/?ProductId=9NBLGGH5G38S"));
         }
 
         private void cclick(object sender, RoutedEventArgs e)

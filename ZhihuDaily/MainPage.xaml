@@ -9,7 +9,7 @@
     Loaded="Page_Loaded"
     RequestedTheme="{Binding AppTheme}"
     DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
-    d:DataContext="{Binding Source={d:DesignData Source=/Data/ContentData.json, Type=data:SampleDataSource}}">
+    >
     <Page.Resources>
         <local:ItemBackgroundFormat x:Key="itemBackgroundFormat"></local:ItemBackgroundFormat>
     </Page.Resources>
@@ -73,7 +73,7 @@
             <TextBlock Text="加载中..."/>
         </StackPanel>
         
-        <!-- TODO: CONTENT -->
+        <!-- CONTENT -->
         <ListView Grid.Row="1"
                   Name="listStories"
                   SelectionMode="None"

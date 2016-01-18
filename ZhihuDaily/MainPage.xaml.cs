@@ -74,8 +74,7 @@ namespace ZhihuDaily
         #region APPBARBUTTON
         private async void bclick(object sender, RoutedEventArgs e)
         {
-            await Windows.System.Launcher.LaunchUriAsync(
-    new Uri(string.Format("ms-windows-store:reviewapp?appid=" + "f840285e-0a27-49a5-81d6-78edf83e82b9")));
+            await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store://review/?ProductId=9NBLGGH5G38S"));
         }
 
         private void cclick(object sender, RoutedEventArgs e)

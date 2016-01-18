@@ -93,10 +93,10 @@ namespace ZhihuDaily
 
 
         #region APPBARBUTTON
-        private async void ShareClick(object sender, RoutedEventArgs e)
+        private void ShareClick(object sender, RoutedEventArgs e)
         {
-            //TODO: share among other apps
-            ;
+            // share among other apps
+            Windows.ApplicationModel.DataTransfer.DataTransferManager.ShowShareUI();;
         }
 
         private void FavoriteClick(object sender, RoutedEventArgs e)

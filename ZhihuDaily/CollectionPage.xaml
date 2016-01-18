@@ -28,7 +28,7 @@
             <TextBlock Text="收藏夹" FontSize="21" VerticalAlignment="Center" Foreground="White" Margin="20, 0, 0, 0"/>
         </Grid>
 
-        <!-- TODO: CONTENT -->
+        <!-- CONTENT -->
         <ListView Name="listCollections"
                   Grid.Row="1"
                   Padding="0,5,0,0"
@@ -76,4 +76,16 @@
 
         </ProgressRing>
     </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar ClosedDisplayMode="Minimal" Background="#33000000" BorderBrush="{x:Null}">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Icon="Like" Label="点评" Click="bclick"/>
+                <AppBarButton Icon="Help" Label="关于" Click="cclick"/>
+                <AppBarButton Icon="Setting" Label="设置" Click="Setting"/>
+                <AppBarButton Icon="Favorite" Label="主页" Click="homeclick"/>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+    
 </Page>
